@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 سكربتات روبلوكس ستوديو - الجامدة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7c948;
+            --dark: #1a1a2e;
+            --darker: #0f0f1a;
+            --card: #16213e;
+            --text: #e0e0e0;
+            --border: #2a2a4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(90deg, var(--primary), #ff8c5a);
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            margin-top: 10px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--card);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1em;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Section */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .script-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .script-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .script-card:hover::before {
+            width: 100%;
+            opacity: 0.05;
+        }
+
+        .script-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .script-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .script-icon {
+            font-size: 2.5em;
+        }
+
+        .script-title {
+            font-size: 1.5em;
+            font-weight: 900;
+            color: var(--secondary);
+        }
+
+        .script-difficulty {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .diff-easy { background: #2ecc71; color: white; }
+        .diff-medium { background: #f39c12; color: white; }
+        .diff-hard { background: #e74c3c; color: white; }
+
+        .script-desc {
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .code-lang {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #ff8c5a;
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: #2ecc71;
+        }
+
+        pre {
+            color: #e6edf3;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-comment { color: #8b949e; }
+        .code-keyword { color: #ff7b72; }
+        .code-string { color: #a5d6ff; }
+        .code-func { color: #d2a8ff; }
+        .code-number { color: #79c0ff; }
+
+        /* Steps */
+        .steps {
+            background: rgba(255,107,53,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .steps h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .steps ol {
+            padding-right: 20px;
+        }
+
+        .steps li {
+            margin-bottom: 8px;
+            color: #ccc;
+        }
+
+        /* AI Prompts */
+        .prompt-card {
+            background: linear-gradient(135deg, var(--card), #1a1a3e);
+            border: 2px solid var(--secondary);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .prompt-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(247,201,72,0.2);
+        }
+
+        .prompt-title {
+            font-size: 1.3em;
+            font-weight: 900;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .prompt-text {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #a5d6ff;
+            border-right: 3px solid var(--secondary);
+        }
+
+        .prompt-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            margin-top: 10px;
+            margin-left: 5px;
+        }
+
+        /* Guide Section */
+        .guide-box {
+            background: var(--card);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .guide-box h3 {
+            color: var(--secondary);
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guide-box p, .guide-box li {
+            color: #bbb;
+            margin-bottom: 10px;
+        }
+
+        .guide-box ul, .guide-box ol {
+            padding-right: 25px;
+        }
+
+        .highlight {
+            background: rgba(255,107,53,0.2);
+            color: var(--secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        /* Tips */
+        .tip-box {
+            background: linear-gradient(135deg, rgba(46,204,113,0.1), rgba(46,204,113,0.05));
+            border: 1px solid #2ecc71;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .tip-box h4 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--darker);
+            border-top: 2px solid var(--border);
+            margin-top: 50px;
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .script-header { flex-direction: column; text-align: center; }
+            .nav { gap: 5px; }
+            .nav-btn { padding: 8px 15px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🔥 سكربتات روبلوكس ستوديو الجامدة</h1>
+        <p>أقوى السكربتات الجاهزة + دليل الاستخدام + أسئلة الذكاء الاصطناعي</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <button class="nav-btn active" onclick="showSection('scripts')">📝 السكربتات</button>
+        <button class="nav-btn" onclick="showSection('guide')">📖 دليل الاستخدام</button>
+        <button class="nav-btn" onclick="showSection('ai')">🤖 أسئلة الذكاء الاصطناعي</button>
+        <button class="nav-btn" onclick="showSection('tips')">💡 نصائح احترافية</button>
+    </div>
+
+    <div class="container">
+
+        <!-- SCRIPTS SECTION -->
+        <div id="scripts" class="section active">
+
+            <h2 style="text-align:center; font-size:2em; margin-bottom:30px; color:var(--secondary);">🎮 أقوى سكربتات روبلوكس</h2>
+
+            <!-- Script 1: Admin Commands -->
+            <div class="script-card">
+                <div class="script-header">
+                    <span class="script-icon">👑</span>
+                    <div>
+                        <span class="script-title">نظام أوامر الأدمن (Admin Commands)</span>
+                        <span class="script-difficulty diff-hard">صعب</span>
+                    </div>
+                </div>
+                <p class="script-desc">
+                    سكربت متكامل لنظام أوامر الأدمن! يعطيك تحكم كامل بالسيرفر: طرد لاعبين، إعطاء أدوات، تغيير السرعة، تلفريب، وغيره.
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">🔵 ServerScriptService - Script</span>
+                        <button class="copy-btn" onclick="copyCode(this)">نسخ</button>
+                    </div>
+                    <pre>-- نظام أوامر الأدمن المتكامل
+local Players = game:GetService("Players")
+local Commands = {}
+local Admins = {"YourUsername"} -- ضع اسمك هنا
+
+-- التحقق من الأدمن
+local function isAdmin(player)
+    for _, name in ipairs(Admins) do
+        if player.Name == name then return true end
+    end
+    return false
+end
+
+-- أمر: إعطاء أداة
+Commands.give = function(admin, args)
+    local targetName = args[1]
+    local toolName = args[2]
+    local target = Players:FindFirstChild(targetName)
+    if target and target.Character then
+        local tool = game.ReplicatedStorage:FindFirstChild(toolName)
+        if tool then
+            tool:Clone().Parent = target.Backpack
+            print("✅ تم إعطاء الأداة!")
+        end
+    end
+end
+
+-- أمر: طرد لاعب
+Commands.kick = function(admin, args)
+    local target = Players:FindFirstChild(args[1])
+    if target then
+        target:Kick("تم طردك من السيرفر")
+    end
+end
+
+-- أمر: تغيير سرعة
+Commands.speed = function(admin, args)
+    local target = Players:FindFirstChild(args[1])
+    local speed = tonumber(args[2]) or 50
+    if target and target.Character then
+        target.Character.Humanoid.WalkSpeed = speed
+    end
+end
+
+-- أمر: تلفريب
+Commands.tp = function(admin, args)
+    local target = Players:FindFirstChild(args[1])
+    if target and target.Character and admin.Character then
+        target.Character.HumanoidRootPart.CFrame = admin.Character.HumanoidRootPart.CFrame
+    end
+end
+
+-- نظام الشات
+Players.PlayerAdded:Connect(function(player)
+    player.Chatted:Connect(function(msg)
+        if isAdmin(player) and msg:sub(1,1) == ";" then
+            local args = msg:sub(2):split(" ")
+            local cmd = table.remove(args, 1)
+            if Commands[cmd] then
+                Commands[cmd](player, args)
+            end
+        end
+    end)
+end)</pre>
+                </div>
+                <div class="steps">
+                    <h4>📌 خطوات الاستخدام:</h4>
+                    <ol>
+                        <li>افتح <strong>Roblox Studio</strong> وادخل على لعبتك</li>
+                        <li>روح لـ <strong>ServerScriptService</strong> وسوي Script جديد</li>
+                        <li>انسخ السكربت فوق والصقه</li>
+                        <li>غيّر <code>"YourUsername"</code> لاسمك في روبلوكس</li>
+                        <li>سوي <strong>RemoteEvent</strong> في ReplicatedStorage إذا تحتاج تواصل بين Client و Server</li>
+                        <li>في اللعبة اكتب في الشات: <code>;kick PlayerName</code> أو <code>;speed PlayerName 100</code></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Script 2: Custom GUI -->
+            <div class="script-card">
+                <div class="script-header">
+                    <span class="script-icon">🎨</span>
+                    <div>
+                        <span class="script-title">واجهة مستخدم تفاعلية (Custom GUI)</span>
+                        <span class="script-difficulty diff-medium">متوسط</span>
+                    </div>
+                </div>
+                <p class="script-desc">
+                    واجهة مستخدم احترافية مع أنيميشنات، زر إغلاق، نظام نقاط، وتصميم عصري!
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">🟢 StarterGui - LocalScript</span>
+                        <button class="copy-btn" onclick="copyCode(this)">نسخ</button>
+                    </div>
+                    <pre>-- واجهة مستخدم احترافية مع أنيميشنات
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- إنشاء الشاشة
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MainMenu"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+-- الإطار الرئيسي
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0, 400, 0, 300)
+mainFrame.Position = UDim2.new(0.5, -200, 0.5, -150)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 50)
+mainFrame.BorderSizePixel = 0
+mainFrame.Parent = screenGui
+
+-- زوايا دائرية
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 15)
+corner.Parent = mainFrame
+
+-- العنوان
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 50)
+title.BackgroundTransparency = 1
+title.Text = "🎮 قائمة اللاعب"
+title.TextColor3 = Color3.fromRGB(255, 200, 100)
+title.TextSize = 28
+title.Font = Enum.Font.GothamBold
+title.Parent = mainFrame
+
+-- زر الإغلاق
+local closeBtn = Instance.new("TextButton")
+closeBtn.Size = UDim2.new(0, 40, 0, 40)
+closeBtn.Position = UDim2.new(1, -50, 0, 10)
+closeBtn.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+closeBtn.Text = "✕"
+closeBtn.TextColor3 = Color3.new(1, 1, 1)
+closeBtn.TextSize = 20
+closeBtn.Parent = mainFrame
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(1, 0)
+closeCorner.Parent = closeBtn
+
+-- زر اللعب
+local playBtn = Instance.new("TextButton")
+playBtn.Size = UDim2.new(0.8, 0, 0, 50)
+playBtn.Position = UDim2.new(0.1, 0, 0.4, 0)
+playBtn.BackgroundColor3 = Color3.fromRGB(255, 107, 53)
+playBtn.Text = "🚀 ابدأ اللعب"
+playBtn.TextColor3 = Color3.new(1, 1, 1)
+playBtn.TextSize = 22
+playBtn.Font = Enum.Font.GothamBold
+playBtn.Parent = mainFrame
+
+local playCorner = Instance.new("UICorner")
+playCorner.CornerRadius = UDim.new(0, 10)
+playCorner.Parent = playBtn
+
+-- أنيميشن الدخول
+mainFrame.Position = UDim2.new(0.5, -200, 1.5, 0)
+local tweenInfo = TweenInfo.new(0.8, Enum.EasingStyle.Elastic, Enum.EasingDirection.Out)
+local tween = TweenService:Create(mainFrame, tweenInfo, {Position = UDim2.new(0.5, -200, 0.5, -150)})
+tween:Play()
+
+-- تأثيرات الأزرار
+playBtn.MouseEnter:Connect(function()
+    TweenService:Create(playBtn, TweenInfo.new(0.2), {Size = UDim2.new(0.85, 0, 0, 55)}):Play()
+end)
+
+playBtn.MouseLeave:Connect(function()
+    TweenService:Create(playBtn, TweenInfo.new(0.2), {Size = UDim2.new(0.8, 0, 0, 50)}):Play()
+end)
+
+-- إغلاق القائمة
+closeBtn.MouseButton1Click:Connect(function()
+    local closeTween = TweenService:Create(mainFrame, TweenInfo.new(0.5), {Position = UDim2.new(0.5, -200, 1.5, 0)})
+    closeTween:Play()
+    closeTween.Completed:Wait()
+    screenGui:Destroy()
+end)
+
+-- زر فتح القائمة (زر على الشاشة)
+local openBtn = Instance.new("TextButton")
+openBtn.Size = UDim2.new(0, 60, 0, 60)
+openBtn.Position = UDim2.new(0, 20, 0.5, -30)
+openBtn.BackgroundColor3 = Color3.fromRGB(255, 107, 53)
+openBtn.Text = "☰"
+openBtn.TextColor3 = Color3.new(1, 1, 1)
+openBtn.TextSize = 30
+openBtn.Parent = screenGui
+
+local openCorner = Instance.new("UICorner")
+openCorner.CornerRadius = UDim.new(1, 0)
+openCorner.Parent = openBtn
+
+openBtn.MouseButton1Click:Connect(function()
+    mainFrame.Visible = true
+    TweenService:Create(mainFrame, tweenInfo, {Position = UDim2.new(0.5, -200, 0.5, -150)}):Play()
+end)</pre>
+                </div>
+                <div class="steps">
+                    <h4>📌 خطوات الاستخدام:</h4>
+                    <ol>
+                        <li>روح لـ <strong>StarterGui</strong> وسوي <strong>LocalScript</strong> جديد</li>
+                        <li>انسخ السكربت والصقه</li>
+                        <li>لما تسوي Play، راح تطلع لك قائمة أنيميتد</li>
+                        <li>تقدر تعدل الألوان من <code>Color3.fromRGB()</code></li>
+                        <li>ضيف أزرار أكثر بنفس الطريقة!</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Script 3: Animation System -->
+            <div class="script-card">
+                <div class="script-header">
+                    <span class="script-icon">🎭</span>
+                    <div>
+                        <span class="script-title">نظام أنيميشنات متقدم</span>
+                        <span class="script-difficulty diff-medium">متوسط</span>
+                    </div>
+                </div>
+                <p class="script-desc">
+                    نظام أنيميشنات احترافي: مشي، جري، قفز، رقص، وإمotes مع نظام تشغيل سلس!
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">🔵 ServerScriptService - Script</span>
+                        <button class="copy-btn" onclick="copyCode(this)">نسخ</button>
+                    </div>
+                    <pre>-- نظام أنيميشنات متقدم
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- أنشئ مجلد للأنيميشنات في ReplicatedStorage
+local AnimationsFolder = Instance.new("Folder")
+AnimationsFolder.Name = "Animations"
+AnimationsFolder.Parent = ReplicatedStorage
+
+-- (ضع Animation objects هنا في Studio)
+-- مثال: Idle, Walk, Run, Jump, Dance
+
+local AnimationSystem = {}
+
+function AnimationSystem.SetupCharacter(player, character)
+    local humanoid = character:WaitForChild("Humanoid")
+    local animator = humanoid:FindFirstChildOfClass("Animator") or Instance.new("Animator", humanoid)
+
+    local tracks = {}
+
+    -- تحميل الأنيميشنات
+    for _, anim in ipairs(AnimationsFolder:GetChildren()) do
+        if anim:IsA("Animation") then
+            tracks[anim.Name] = animator:LoadAnimation(anim)
+        end
+    end
+
+    -- أنيميشن المشي الافتراضي
+    humanoid.Running:Connect(function(speed)
+        if speed > 0.1 then
+            if speed > 20 and tracks.Run then
+                if tracks.Walk then tracks.Walk:Stop() end
+                if not tracks.Run.IsPlaying then tracks.Run:Play() end
+            elseif tracks.Walk then
+                if tracks.Run then tracks.Run:Stop() end
+                if not tracks.Walk.IsPlaying then tracks.Walk:Play() end
+            end
+        else
+            if tracks.Walk then tracks.Walk:Stop() end
+            if tracks.Run then tracks.Run:Stop() end
+            if tracks.Idle and not tracks.Idle.IsPlaying then tracks.Idle:Play() end
+        end
+    end)
+
+    -- أنيميشن القفز
+    humanoid.Jumping:Connect(function()
+        if tracks.Jump then
+            tracks.Jump:Play()
+        end
+    end)
+
+    return tracks
+end
+
+-- عند دخول اللاعب
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(char)
+        wait(1) -- انتظر تحميل الشخصية
+        AnimationSystem.SetupCharacter(player, char)
+    end)
+end)
+
+-- RemoteEvent للرقص والإمotes
+local DanceEvent = Instance.new("RemoteEvent")
+DanceEvent.Name = "DanceEvent"
+DanceEvent.Parent = ReplicatedStorage
+
+DanceEvent.OnServerEvent:Connect(function(player, danceName)
+    local character = player.Character
+    if character then
+        local humanoid = character:FindFirstChild("Humanoid")
+        local animator = humanoid and humanoid:FindFirstChildOfClass("Animator")
+        if animator then
+            local anim = AnimationsFolder:FindFirstChild(danceName)
+            if anim then
+                local track = animator:LoadAnimation(anim)
+                track.Priority = Enum.AnimationPriority.Action
+                track:Play()
+            end
+        end
+    end
+end)</pre>
+                </div>
+                <div class="steps">
+                    <h4>📌 خطوات الاستخدام:</h4>
+                    <ol>
+                        <li>سوي <strong>Folder</strong> في ReplicatedStorage وسمّه "Animations"</li>
+                        <li>سوي <strong>Animation</strong> objects داخله (Idle, Walk, Run, Jump, Dance)</li>
+                        <li>ارفع الأنيميشنات لـ Roblox وخذ الـ Animation ID وحطها</li>
+                        <li>انسخ السكربت في ServerScriptService</li>
+                        <li>للرقص من Client: <code>ReplicatedStorage.DanceEvent:FireServer("Dance1")</code></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Script 4: Tool System -->
+            <div class="script-card">
+                <div class="script-header">
+                    <span class="script-icon">⚔️</span>
+                    <div>
+                        <span class="script-title">نظام أدوات متكامل (Tools System)</span>
+                        <span class="script-difficulty diff-easy">سهل</span>
+                    </div>
+                </div>
+                <p class="script-desc">
+                    سكربت سهل لإنشاء أدوات قابلة للاستخدام: سلاح، طعام، أداة بناء، مع نظام تفعيل!
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">⚪ Tool - Script (داخل الـ Tool)</span>
+                        <button class="copy-btn" onclick="copyCode(this)">نسخ</button>
+                    </div>
+                    <pre>-- سكربت أداة السلاح
+local tool = script.Parent
+local player = nil
+
+-- عند تجهيز الأداة
+tool.Equipped:Connect(function(mouse)
+    player = game.Players:GetPlayerFromCharacter(tool.Parent)
+    print("✅ تم تجهيز الأداة!")
+
+    -- تغيير المؤشر
+    mouse.Icon = "rbxassetid://13221881" -- مؤشر هدف
+end)
+
+-- عند إلغاء التجهيز
+tool.Unequipped:Connect(function()
+    player = nil
+    print("❌ تم إلغاء تجهيز الأداة")
+end)
+
+-- عند النقر (الهجوم)
+tool.Activated:Connect(function()
+    if not player then return end
+
+    -- أنيميشن الهجوم
+    local character = tool.Parent
+    local humanoid = character:FindFirstChild("Humanoid")
+
+    if humanoid then
+        -- تشغيل أنيميشن الهجوم
+        local animator = humanoid:FindFirstChildOfClass("Animator")
+        if animator then
+            local attackAnim = Instance.new("Animation")
+            attackAnim.AnimationId = "rbxassetid://YOUR_ANIMATION_ID"
+            local track = animator:LoadAnimation(attackAnim)
+            track:Play()
+        end
+    end
+
+    -- نظام الضرر
+    local handle = tool:FindFirstChild("Handle")
+    if handle then
+        -- إنشاء هيتبوكس مؤقت
+        local hitbox = Instance.new("Part")
+        hitbox.Size = Vector3.new(5, 5, 5)
+        hitbox.CFrame = handle.CFrame * CFrame.new(0, 0, -3)
+        hitbox.Anchored = true
+        hitbox.CanCollide = false
+        hitbox.Transparency = 1
+        hitbox.Parent = workspace
+
+        -- التحقق من التصادم
+        local connection
+        connection = hitbox.Touched:Connect(function(hit)
+            local targetHumanoid = hit.Parent:FindFirstChild("Humanoid")
+            if targetHumanoid and targetHumanoid.Parent ~= character then
+                targetHumanoid:TakeDamage(25)
+                print("💥 ضربة ناجحة! الضرر: 25")
+            end
+        end)
+
+        -- إزالة الهيتبوكس بعد لحظة
+        game:GetService("Debris"):AddItem(hitbox, 0.3)
+    end
+
+    -- تأثير صوتي
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://YOUR_SOUND_ID"
+    sound.Parent = tool.Handle
+    sound:Play()
+end)
+
+-- سكربت إضافي: أداة الطعام (تعيد صحة)
+local foodTool = script.Parent
+foodTool.Activated:Connect(function()
+    local character = foodTool.Parent
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.Health = math.min(humanoid.Health + 30, humanoid.MaxHealth)
+        print("🍎 تم شفاء 30 نقطة صحة!")
+
+        -- تأثير الجسيمات
+        local particle = Instance.new("ParticleEmitter")
+        particle.Texture = "rbxassetid://258128463"
+        particle.Parent = character.Head
+        game:GetService("Debris"):AddItem(particle, 2)
+    end
+end)</pre>
+                </div>
+                <div class="steps">
+                    <h4>📌 خطوات الاستخدام:</h4>
+                    <ol>
+                        <li>في <strong>Workspace</strong> أو <strong>StarterPack</strong> سوي <strong>Tool</strong> جديد</li>
+                        <li>ضيف <strong>Part</strong> داخل الـ Tool وسمّه "Handle"</li>
+                        <li>حط السكربت داخل الـ Tool</li>
+                        <li>للأنيميشن: غيّر <code>YOUR_ANIMATION_ID</code> لـ ID حقك</li>
+                        <li>للصوت: غيّر <code>YOUR_SOUND_ID</code> لـ ID حقك</li>
+                        <li>اختبرها! لما تضغط Click راح تهاجم</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Script 5: DataStore System -->
+            <div class="script-card">
+                <div class="script-header">
+                    <span class="script-icon">💾</span>
+                    <div>
+                        <span class="script-title">نظام حفظ البيانات (DataStore)</span>
+                        <span class="script-difficulty diff-hard">صعب</span>
+                    </div>
+                </div>
+                <p class="script-desc">
+                    سكربت احترافي لحفظ بيانات اللاعبين: فلوس، مستوى، عناصر، إحصائيات - مع نظام آمن ضد فقدان البيانات!
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">🔵 ServerScriptService - Script</span>
+                        <button class="copy-btn" onclick="copyCode(this)">نسخ</button>
+                    </div>
+                    <pre>-- نظام حفظ البيانات المتقدم (DataStore)
+local DataStoreService = game:GetService("DataStoreService")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local PlayerData = DataStoreService:GetDataStore("PlayerData_v2")
+
+-- الإعدادات الافتراضية
+local DEFAULT_DATA = {
+    Coins = 0,
+    Level = 1,
+    XP = 0,
+    Items = {},
+    Stats = {
+        Strength = 10,
+        Speed = 10,
+        Defense = 10
+    },
+    JoinDate = os.time()
+}
+
+-- ذاكرة مؤقتة للبيانات
+local sessionData = {}
+local dataLoaded = {}
+
+-- دالة آمنة لحفظ البيانات
+local function safeSave(player, data)
+    local success, err = pcall(function()
+        PlayerData:SetAsync(player.UserId, data)
+    end)
+    if not success then
+        warn("❌ فشل الحفظ لـ " .. player.Name .. ": " .. tostring(err))
+        return false
+    end
+    print("✅ تم حفظ بيانات " .. player.Name)
+    return true
+end
+
+-- دالة آمنة لتحميل البيانات
+local function safeLoad(player)
+    local success, data = pcall(function()
+        return PlayerData:GetAsync(player.UserId)
+    end)
+
+    if success and data then
+        print("✅ تم تحميل بيانات " .. player.Name)
+        return data
+    else
+        print("🆕 بيانات جديدة لـ " .. player.Name)
+        return table.clone(DEFAULT_DATA)
+    end
+end
+
+-- عند دخول اللاعب
+Players.PlayerAdded:Connect(function(player)
+    -- تحميل البيانات
+    local data = safeLoad(player)
+    sessionData[player.UserId] = data
+    dataLoaded[player.UserId] = true
+
+    -- إنشاء قيم في الليدرستات
+    local leaderstats = Instance.new("Folder")
+    leaderstats.Name = "leaderstats"
+    leaderstats.Parent = player
+
+    local coins = Instance.new("IntValue")
+    coins.Name = "💰 Coins"
+    coins.Value = data.Coins
+    coins.Parent = leaderstats
+
+    local level = Instance.new("IntValue")
+    level.Name = "⭐ Level"
+    level.Value = data.Level
+    level.Parent = leaderstats
+
+    -- مثال: إضافة فلوس
+    player.CharacterAdded:Connect(function(char)
+        wait(2)
+        data.Coins = data.Coins + 10
+        coins.Value = data.Coins
+        print("💰 " .. player.Name .. " حصل على 10 فلوس!")
+    end)
+end)
+
+-- عند خروج اللاعب
+Players.PlayerRemoving:Connect(function(player)
+    if dataLoaded[player.UserId] then
+        safeSave(player, sessionData[player.UserId])
+        sessionData[player.UserId] = nil
+        dataLoaded[player.UserId] = nil
+    end
+end)
+
+-- حفظ دوري (كل 60 ثانية)
+while true do
+    wait(60)
+    for userId, data in pairs(sessionData) do
+        local player = Players:GetPlayerByUserId(userId)
+        if player then
+            safeSave(player, data)
+        end
+    end
+end
+
+-- حفظ عند إغلاق اللعبة
+game:BindToClose(function()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if dataLoaded[player.UserId] then
+            safeSave(player, sessionData[player.UserId])
+        end
+    end
+end)</pre>
+                </div>
+                <div class="steps">
+                    <h4>📌 خطوات الاستخدام:</h4>
+                    <ol>
+                        <li>فعّل <strong>API Services</strong> في إعدادات اللعبة (Game Settings)</li>
+                        <li>انسخ السكربت في <strong>ServerScriptService</strong></li>
+                        <li>غيّر <code>DEFAULT_DATA</code> حسب بيانات لعبتك</li>
+                        <li>للحصول على بيانات لاعب: <code>sessionData[player.UserId].Coins</code></li>
+                        <li>السكربت يحفظ تلقائياً كل 60 ثانية وعند الخروج</li>
+                        <li>اختبر في <strong>Play Solo</strong> أو انشر اللعبة واختبرها</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Script 6: Leaderboard -->
+            <div class="script-card">
+                <div class="script-header">
+                    <span class="script-icon">🏆</span>
+                    <div>
+                        <span class="script-title">لوحة المتصدرين (Leaderboard)</span>
+                        <span class="script-difficulty diff-easy">سهل</span>
+                    </div>
+                </div>
+                <p class="script-desc">
+                    لوحة متصدرين احترافية تظهر أفضل اللاعبين في اللعبة مع تحديث فوري!
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">🔵 ServerScriptService - Script</span>
+                        <button class="copy-btn" onclick="copyCode(this)">نسخ</button>
+                    </div>
+                    <pre>-- لوحة المتصدرين المتقدمة
+local Players = game:GetService("Players")
+
+-- بيانات اللاعبين (مثال)
+local playerStats = {}
+
+Players.PlayerAdded:Connect(function(player)
+    -- إنشاء leaderstats
+    local leaderstats = Instance.new("Folder")
+    leaderstats.Name = "leaderstats"
+    leaderstats.Parent = player
+
+    local kills = Instance.new("IntValue")
+    kills.Name = "⚔️ Kills"
+    kills.Value = 0
+    kills.Parent = leaderstats
+
+    local deaths = Instance.new("IntValue")
+    deaths.Name = "💀 Deaths"
+    deaths.Value = 0
+    deaths.Parent = leaderstats
+
+    local points = Instance.new("IntValue")
+    points.Name = "🏆 Points"
+    points.Value = 0
+    points.Parent = leaderstats
+
+    playerStats[player.UserId] = {
+        Kills = kills,
+        Deaths = deaths,
+        Points = points
+    }
+
+    -- عند موت اللاعب
+    player.CharacterAdded:Connect(function(char)
+        local humanoid = char:WaitForChild("Humanoid")
+        humanoid.Died:Connect(function()
+            deaths.Value = deaths.Value + 1
+
+            -- من قتله؟
+            local killer = humanoid:FindFirstChild("creator")
+            if killer then
+                local killerPlayer = killer.Value
+                if killerPlayer and playerStats[killerPlayer.UserId] then
+                    playerStats[killerPlayer.UserId].Kills.Value += 1
+                    playerStats[killerPlayer.UserId].Points.Value += 100
+                end
+            end
+        end)
+    end)
+end)
+
+-- نظام الـ Killfeed (من اللاعب للاعب)
+local function tagHumanoid(player, humanoid)
+    local creator = Instance.new("ObjectValue")
+    creator.Name = "creator"
+    creator.Value = player
+    creator.Parent = humanoid
+end
+
+-- مثال: سلاح يقتل
+-- في سكربت السلاح:
+-- tagHumanoid(player, targetHumanoid)</pre>
+                </div>
+                <div class="steps">
+                    <h4>📌 خطوات الاستخدام:</h4>
+                    <ol>
+                        <li>انسخ السكربت في <strong>ServerScriptService</strong></li>
+                        <li>لوحة المتصدرين راح تظهر تلقائياً فوق رأس كل لاعب</li>
+                        <li>استخدم <code>tagHumanoid()</code> في سكربت السلاح عشان يحسب القتل</li>
+                        <li>تقدر تضيف إحصائيات أكثر بنفس الطريقة</li>
+                    </ol>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- GUIDE SECTION -->
+        <div id="guide" class="section">
+            <h2 style="text-align:center; font-size:2em; margin-bottom:30px; color:var(--secondary);">📖 دليل استخدام السكربتات</h2>
+
+            <div class="guide-box">
+                <h3>🚀 الخطوة الأولى: فهم بنية روبلوكس ستوديو</h3>
+                <p>قبل ما تستخدم أي سكربت، لازم تعرف الفرق بين الأماكن:</p>
+                <ul>
+                    <li><span class="highlight">ServerScriptService</span> - السكربتات اللي تشتغل على السيرفر (لوجيك اللعبة، حفظ البيانات)</li>
+                    <li><span class="highlight">StarterPlayerScripts</span> - سكربتات تشتغل عند كل لاعب (كاميرا، حركة)</li>
+                    <li><span class="highlight">StarterGui</span> - واجهات المستخدم (أزرار، قوائم)</li>
+                    <li><span class="highlight">ReplicatedStorage</span> - مكان مشترك بين السيرفر واللاعب (أدوات، أنيميشنات)</li>
+                    <li><span class="highlight">Workspace</span> - العالم اللي اللاعبين يشوفونه (أجزاء، شخصيات)</li>
+                </ul>
+            </div>
+
+            <div class="guide-box">
+                <h3>📝 الخطوة الثانية: كيف تضيف سكربت</h3>
+                <ol>
+                    <li>افتح <strong>Roblox Studio</strong> وافتح لعبتك</li>
+                    <li>في <strong>Explorer</strong> (على اليمين)، دور على المكان المناسب</li>
+                    <li>اضغط <strong>Right Click</strong> → <strong>Insert Object</strong> → اختار <strong>Script</strong> أو <strong>LocalScript</strong></li>
+                    <li>انسخ السكربت من الموقع والصقه في المحرر</li>
+                    <li>اضغط <strong>Play</strong> (F5) عشان تجرب!</li>
+                </ol>
+            </div>
+
+            <div class="guide-box">
+                <h3>🔵 الخطوة الثالثة: الفرق بين Script و LocalScript</h3>
+                <table style="width:100%; border-collapse:collapse; margin-top:15px;">
+                    <tr style="background:var(--primary); color:white;">
+                        <th style="padding:12px; border:1px solid var(--border);">Script</th>
+                        <th style="padding:12px; border:1px solid var(--border);">LocalScript</th>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px; border:1px solid var(--border);">يشتغل على السيرفر</td>
+                        <td style="padding:12px; border:1px solid var(--border);">يشتغل على جهاز اللاعب</td>
+                    </tr>
+                    <tr style="background:rgba(255,255,255,0.03);">
+                        <td style="padding:12px; border:1px solid var(--border);">يقدر يتحكم بالعالم كله</td>
+                        <td style="padding:12px; border:1px solid var(--border);">يتحكم بجهاز اللاعب بس</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:12px; border:1px solid var(--border);">حفظ بيانات، أنظمة اللعبة</td>
+                        <td style="padding:12px; border:1px solid var(--border);">واجهات المستخدم، كاميرا</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="guide-box">
+                <h3>⚡ الخطوة الرابعة: RemoteEvents و RemoteFunctions</h3>
+                <p>للتواصل بين <strong>LocalScript</strong> و <strong>Script</strong> تحتاج RemoteEvents:</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">مثال على التواصل</span>
+                        <button class="copy-btn" onclick="copyCode(this)">نسخ</button>
+                    </div>
+                    <pre>-- في ReplicatedStorage سوي RemoteEvent وسمّه "MyEvent"
+
+-- ========== LocalScript (جهاز اللاعب) ==========
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local event = ReplicatedStorage:WaitForChild("MyEvent")
+
+-- إرسال بيانات للسيرفر
+event:FireServer("Hello Server!", 100)
+
+-- ========== Script (السيرفر) ==========
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local event = ReplicatedStorage:WaitForChild("MyEvent")
+
+-- استقبال البيانات من اللاعب
+event.OnServerEvent:Connect(function(player, message, number)
+    print(player.Name .. " أرسل: " .. message)
+    print("الرقم: " .. number)
+end)</pre>
+                </div>
+            </div>
+
+            <div class="guide-box">
+                <h3>🎨 الخطوة الخامسة: إضافة أنيميشنات</h3>
+                <ol>
+                    <li>افتح <strong>Animation Editor</strong> من التبويب <strong>Avatar</strong></li>
+                    <li>سوي أنيميشنك وارفعه (Publish to Roblox)</li>
+                    <li>خذ الـ <strong>Animation ID</strong> (الرقم اللي يطلع)</li>
+                    <li>سوي <strong>Animation</strong> object في ReplicatedStorage</li>
+                    <li>حط الـ ID في خاصية <strong>AnimationId</strong></li>
+                    <li>استخدم السكربت اللي فوق عشن تشغلها!</li>
+                </ol>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 نصيحة ذهبية</h4>
+                <p>دايم اختبر سكربتاتك في <strong>Play Solo</strong> قبل ما تنشر اللعبة! واستخدم <strong>Output</strong> (View → Output) عشان تشوف الأخطاء.</p>
+            </div>
+        </div>
+
+        <!-- AI PROMPTS SECTION -->
+        <div id="ai" class="section">
+            <h2 style="text-align:center; font-size:2em; margin-bottom:30px; color:var(--secondary);">🤖 أسئلة الذكاء الاصطناعي</h2>
+            <p style="text-align:center; margin-bottom:30px; color:#aaa;">انسخ أي سؤال والصقه في ChatGPT، Claude، أو أي ذكاء اصطناعي عشن يعطيك سكربت مخصص!</p>
+
+            <div class="prompt-card" onclick="copyPrompt(this)">
+                <div class="prompt-title">🏗️ سؤال: بناء نظام متجر كامل</div>
+                <div class="prompt-text">
+                    اكتب لي سكربت Roblox Lua كامل لنظام متجر داخل اللعبة. يحتوي على:<br>
+                    - واجهة مستخدم (GUI) تعرض العناصر مع صور وأسعار<br>
+                    - نظام فلوس (Coins) يحفظ في DataStore<br>
+                    - زر شراء يتحقق من كفاية الفلوس<br>
+                    - تأثيرات بصرية عند الشراء (جسيمات، صوت)<br>
+                    - قائمة Inventory يظهر فيها العناصر المشتراة<br><br>
+                    استخدم RemoteEvents للتواصل بين Client و Server. اكتب السكربت منظم ومع تعليقات بالعربية.
+                </div>
+                <span class="prompt-tag">🛒 متجر</span>
+                <span class="prompt-tag">📊 DataStore</span>
+                <span class="prompt-tag">🎨 GUI</span>
+            </div>
+
+            <div class="prompt-card" onclick="copyPrompt(this)">
+                <div class="prompt-title">⚔️ سؤال: نظام قتال PvP متقدم</div>
+                <div class="prompt-text">
+                    اكتب لي سكربت Roblox Lua لنظام قتال PvP متكامل:<br>
+                    - أنظمة هجوم (ضربة عادية، ضربة قوية، دفاع)<br>
+                    - نظام صحة (Health) مع شريط صحة فوق الرأس<br>
+                    - نظام Respawn بعد 5 ثواني من الموت<br>
+                    - Killfeed يظهر من قتل من<br>
+                    - Combo system (3 ضربات متتالية = ضرر إضافي)<br>
+                    - تأثيرات كاميرا (اهتزاز عند الضرب)<br><br>
+                    اجعله آمن ضد الـ Exploits باستخدام Server-Side Validation.
+                </div>
+                <span class="prompt-tag">⚔️ قتال</span>
+                <span class="prompt-tag">🏆 PvP</span>
+                <span class="prompt-tag">🛡️ أمان</span>
+            </div>
+
+            <div class="prompt-card" onclick="copyPrompt(this)">
+                <div class="prompt-title">🌍 سؤال: نظام عوالم متعددة (Multi-World)</div>
+                <div class="prompt-text">
+                    اكتب لي سكربت Roblox Lua لنظام عوالم متعددة في لعبة واحدة:<br>
+                    - بورتالات تنقل بين العوالم المختلفة<br>
+                    - كل عالم له بيانات مستقلة (فلوس، مستوى)<br>
+                    - شاشة تحميل (Loading Screen) عند الانتقال<br>
+                    - قائمة اختيار العوالم مع صور مصغرة<br>
+                    - قفل العوالم حسب المستوى (Level Lock)<br>
+                    - حفظ تقدم اللاعب في كل عالم في DataStore<br><br>
+                    استخدام TeleportService و DataStore بشكل احترافي.
+                </div>
+                <span class="prompt-tag">🌍 عوالم</span>
+                <span class="prompt-tag">🌀 Teleport</span>
+                <span class="prompt-tag">📊 DataStore</span>
+            </div>
+
+            <div class="prompt-card" onclick="copyPrompt(this)">
+                <div class="prompt-title">🎮 سؤال: نظام مهام (Quest System)</div>
+                <div class="prompt-text">
+                    اكتب لي سكربت Roblox Lua لنظام مهام متكامل:<br>
+                    - NPC يعطي المهام مع حوار تفاعلي<br>
+                    - أنواع مهام: قتل، جمع، توصيل، استكشاف<br>
+                    - شريط تقدم (Progress Bar) لكل مهمة<br>
+                    - مكافآت: فلوس، XP، عناصر نادرة<br>
+                    - نظام يومي (Daily Quests) يتجدد كل 24 ساعة<br>
+                    - إشعارات (Notifications) عند إكمال المهمة<br><br>
+                    مع واجهة مستخدم GUI احترافية ونظام DataStore لحفظ التقدم.
+                </div>
+                <span class="prompt-tag">📜 مهام</span>
+                <span class="prompt-tag">🤖 NPC</span>
+                <span class="prompt-tag">🎁 مكافآت</span>
+            </div>
+
+            <div class="prompt-card" onclick="copyPrompt(this)">
+                <div class="prompt-title">🎵 سؤال: نظام موسيقى وأصوات ديناميكي</div>
+                <div class="prompt-text">
+                    اكتب لي سكربت Roblox Lua لنظام صوتي متقدم:<br>
+                    - موسيقى خلفية تتغير حسب المنطقة (Zone-based Music)<br>
+                    - تأثيرات صوتية 3D (3D Sound Effects)<br>
+                    - نظام Radio داخل اللعبة يقدر اللاعبين يختارون أغاني<br>
+                    - Sound Regions: لما اللاعب يدخل منطقة، يتغير الصوت<br>
+                    - Fade in/out سلس بين المسارات<br>
+                    - خيارات صوت في الإعدادات (حجم، كتم)<br><br>
+                    استخدام SoundService و Region3 بشكل احترافي.
+                </div>
+                <span class="prompt-tag">🎵 موسيقى</span>
+                <span class="prompt-tag">🔊 صوت</span>
+                <span class="prompt-tag">📻 Radio</span>
+            </div>
+
+            <div class="prompt-card" onclick="copyPrompt(this)">
+                <div class="prompt-title">🏠 سؤال: نظام بناء وديكور (Building System)</div>
+                <div class="prompt-text">
+                    اكتب لي سكربت Roblox Lua لنظام بناء مثل Bloxburg أو Adopt Me:<br>
+                    - وضع أثاث وأجزاء في Plot خاص بكل لاعب<br>
+                    - نظام Grid (شبكة) للوضع الدقيق<br>
+                    - تدوير الأجزاء (Rotation) وتغيير الحجم<br>
+                    - حفظ التصميم في DataStore<br>
+                    - زر "Sell" يرجع نصف السعر<br>
+                    - تأثيرات وضع (Placement Effects)<br>
+                    - كشف تصادم (Collision Detection) عشان ما يتداخل الأثاث<br><br>
+                    مع GUI احترافي لاختيار الأثاث والتحكم.
+                </div>
+                <span class="prompt-tag">🏠 بناء</span>
+                <span class="prompt-tag">🪑 أثاث</span>
+                <span class="prompt-tag">💾 حفظ</span>
+            </div>
+
+            <div class="tip-box">
+                <h4>💡 نصيحة لاستخدام الذكاء الاصطناعي</h4>
+                <p>لما تطلب سكربت من AI، خل السؤال <strong>مفصل جداً</strong>! اذكر:</p>
+                <ul>
+                    <li>وين تحط السكربت (ServerScriptService, StarterGui, إلخ)</li>
+                    <li>إذا تحتاج DataStore ولا لا</li>
+                    <li>GUI ولا بدون GUI</li>
+                    <li>مستوى الصعوبة (سهل، متوسط، صعب)</li>
+                    <li>أي سكربتات ثانية تشتغل معاه</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TIPS SECTION -->
+        <div id="tips" class="section">
+            <h2 style="text-align:center; font-size:2em; margin-bottom:30px; color:var(--secondary);">💡 نصائح احترافية</h2>
+
+            <div class="guide-box">
+                <h3>🔒 1. أمان اللعبة (Security)</h3>
+                <ul>
+                    <li><span class="highlight">Never trust the client!</span> دايم تحقق من البيانات في السيرفر</li>
+                    <li>استخدم <code>pcall()</code> مع DataStore عشان ما تخسر بيانات اللاعبين</li>
+                    <li>Rate Limiting: حد عدد الطلبات (RemoteEvents) عشان ما يفجرون اللعبة</li>
+                    <li>Sanitize inputs: تحقق من البيانات اللي يبعثها اللاعب</li>
+                    <li>استخدم <code>game.PrivateServerId</code> عشان تعرف إذا اللعبة Private ولا لا</li>
+                </ul>
+            </div>
+
+            <div class="guide-box">
+                <h3>⚡ 2. الأداء (Performance)</h3>
+                <ul>
+                    <li>استخدم <code>task.wait()</code> بدل <code>wait()</code> - أسرع وأفضل</li>
+                    <li>تجنب <code>while true do</code> الكثيرة، استخدم Events بدلها</li>
+                    <li>Part count: حاول ما تزيد Parts في Workspace عن 10,000</li>
+                    <li>استخدم <code>StreamingEnabled</code> للعوالم الكبيرة</li>
+                    <li>أغلق الـ Connections اللي ما تحتاجها: <code>connection:Disconnect()</code></li>
+                </ul>
+            </div>
+
+            <div class="guide-box">
+                <h3>🎨 3. التصميم (Design)</h3>
+                <ul>
+                    <li>استخدم <strong>UIConstraint</strong> (UIAspectRatioConstraint) عشان الواجهة تتناسب مع كل شاشة</li>
+                    <li>التباين: خل النص واضح على الخلفية (Contrast ratio 4.5:1 على الأقل)</li>
+                    <li>Animations: استخدم TweenService بدل while loops للأنيميشنات</li>
+                    <li>Consistency: خل الألوان والأزرار متناسقة في كل اللعبة</li>
+                    <li>Feedback: دايم أعطِ اللاعب رد فعل لما يسوي شي (صوت، جسيمات)</li>
+                </ul>
+            </div>
+
+            <div class="guide-box">
+                <h3>📱 4. التوافق (Compatibility)</h3>
+                <ul>
+                    <li>اختبر لعبتك على <strong>Mobile</strong> و <strong>Console</strong> مو بس PC</li>
+                    <li>استخدم <code>UserInputService</code> عشن تدعم كل الأجهزة</li>
+                    <li>Mobile buttons: خل الأزرار كبيرة (min 44x44 pixels)</li>
+                    <li>Text scaling: استخدم <code>TextScaled = true</code></li>
+                </ul>
+            </div>
+
+            <div class="guide-box">
+                <h3>🧪 5. الاختبار (Testing)</h3>
+                <ul>
+                    <li>اختبر مع <strong>2+ لاعبين</strong> (Play → Play with up to 3 players)</li>
+                    <li>اختبر DataStore بـ <strong>Studio API Access Enabled</strong></li>
+                    <li>اختبر edge cases: ماذا لو اللاعب خرج فجأة؟ ماذا لو السيرفر وقع؟</li>
+                    <li>استخدم <code>print()</code> و <code>warn()</code> للـ Debugging</li>
+                    <li>سجل الأخطاء في ملف خارجي لو تقدر</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <h4>🎯 نصيحة أخيرة</h4>
+                <p>لا تحاول تسوي كل شي مرة وحدة! ابدأ بسكربت بسيط، اختبره، طوره، وبعدين انتقل للثاني. <strong>التكرار أسرع من الكمال!</strong></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>🔥 صنع بحب لمجتمع روبلوكس العربي 🔥</p>
+        <p style="margin-top:10px;">💡 تذكر: التعلم مستمر، وكل سكربت تكتبه يعلمك شي جديد!</p>
+    </div>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Copy Code
+        function copyCode(btn) {
+            const code = btn.closest('.code-block').querySelector('pre').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = '✅ تم النسخ!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'نسخ';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Copy Prompt
+        function copyPrompt(card) {
+            const text = card.querySelector('.prompt-text').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const title = card.querySelector('.prompt-title');
+                const original = title.textContent;
+                title.textContent = '✅ تم النسخ في الحافظة!';
+                card.style.borderColor = '#2ecc71';
+                setTimeout(() => {
+                    title.textContent = original;
+                    card.style.borderColor = '';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
